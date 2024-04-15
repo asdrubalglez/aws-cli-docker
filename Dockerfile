@@ -1,14 +1,17 @@
-# Use the official AWS CLI Docker image as the base image
-FROM amazon/aws-cli:latest
+# Use the official Node.js Docker image as the base image
+FROM node:20
 
-# Install Node.js and npm
-RUN yum install -y curl
-RUN curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
-RUN yum install -y glibc nodejs
+# Install AWS CLI
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends \
+  python3 \
+  python3-pip \
+  groff \
+  less \
+  && pip3 install --upgrade awscli
 
-# Verify installation
-RUN node --version
-RUN npm --version
+# Verify AWS CLI installation
+RUN aws --version
 
 # Copy the entrypoint script into the container
 COPY entrypoint.sh /entrypoint.sh
