@@ -2,7 +2,7 @@
 set -e
 
 # Parse input arguments
-while [[ $# -gt 0 ]]; do
+while [ $# -gt 0 ]; do
     key="$1"
     case $key in
         --ignore-errors)
@@ -10,14 +10,14 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         *)
-            AWS_COMMAND_ARGS+=("$1")
+            AWS_COMMAND_ARGS="$AWS_COMMAND_ARGS $1"
             shift
             ;;
     esac
 done
 
 # Run the AWS CLI command and capture output
-aws_output=$(aws "${AWS_COMMAND_ARGS[@]}" 2>&1) || true
+aws_output=$(aws $AWS_COMMAND_ARGS 2>&1) || true
 
 # Set the output to the GITHUB_OUTPUT environment variable
 echo "GITHUB_OUTPUT=$aws_output" >> $GITHUB_ENV
