@@ -20,7 +20,7 @@ RUN node --version && npm --version && aws --version
 WORKDIR /app
 
 # Copy the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint2.sh /entrypoint.sh
 
 # Make the entrypoint script executable
 RUN chmod +x /entrypoint.sh
