@@ -23,7 +23,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ secrets.DOCKER_USER }}/aws-cli
+            ${{ secrets.DOCKER_USER }}/aws-cli-alpine
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -37,6 +37,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
+          file: ./Dockerfile.alpine
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

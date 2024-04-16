@@ -1,0 +1,29 @@
+# Use Alpine Linux as the base image
+FROM alpine:latest
+
+# Install necessary dependencies
+RUN apk --no-cache add \
+  nodejs \
+  npm \
+  python3 \
+  py3-pip \
+  bash \
+  ca-certificates \
+  groff \
+  less \
+  && pip3 install --no-cache-dir --upgrade awscli
+
+# Verify installation
+RUN node --version && npm --version && aws --version
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
+
+# Set the entrypoint to the script
+ENTRYPOINT ["/entrypoint.sh"]
