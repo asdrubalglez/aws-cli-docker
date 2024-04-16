@@ -11,4 +11,4 @@ echo "GITHUB_OUTPUT=$(cat /tmp/aws_output.txt)" >>$GITHUB_ENV
 rm /tmp/aws_output.txt
 
 # Exit
-exit $
+exit $?
