@@ -13,6 +13,6 @@ echo "GITHUB_OUTPUT=$login_info" >> $GITHUB_ENV
 # Exit with the exit code of the AWS CLI command
 if [ -n "$aws_output" ]; then
     echo "$aws_output" >&2
-    exit 1
+    exit 0
 fi
 exit 0

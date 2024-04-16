@@ -17,7 +17,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_TOKENi }}
+          password: ${{ secrets.DOCKER_TOKEN }}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
@@ -31,7 +31,6 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=sha
             type=latest
-
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
