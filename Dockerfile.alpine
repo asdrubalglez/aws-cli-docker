@@ -11,7 +11,8 @@ RUN apk --no-cache add \
   ca-certificates \
   groff \
   less \
-  && pip3 install --no-cache-dir --upgrade awscli
+  pipx \
+  && pipx install --no-cache-dir --upgrade awscli
 
 # Verify installation
 RUN node --version && npm --version && aws --version
