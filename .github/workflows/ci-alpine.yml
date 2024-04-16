@@ -46,13 +46,13 @@ jobs:
           echo "GitHub workspace: ${{ github.workspace }}"
           ls -la
 
-      # - name: Build and push
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     context: .
-      #     file: ${{ github.workspace }}/Dockerfile.alpine
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
-      #     # tags: ${{ secrets.DOCKER_USER }}/aws-cli:latest
-      #     platforms: linux/amd64,linux/arm64
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ github.workspace }}/Dockerfile.alpine
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # tags: ${{ secrets.DOCKER_USER }}/aws-cli:latest
+          platforms: linux/amd64,linux/arm64
